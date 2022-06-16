@@ -1,0 +1,1 @@
+mkdir build; cd ./build; rm -rf *; cmake .. -GNinja && ninja; cd .. ; ./indie
