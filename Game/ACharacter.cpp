@@ -38,7 +38,7 @@ void ACharacter::collideBonuses()
                     this->ghostTime.reset();
                     break;
             }
-            map.getEngine().getAudioEngine().playSound(BonusSoundName);
+            map.getEngine().getSFX().playSound(BonusSoundName);
             this->map.removeBonuses(bonuse);
         }
     }
@@ -139,7 +139,7 @@ void ACharacter::respawn(bool isDead, Engine& engine)
         this->setIsInvisible(true);
         this->pos = this->spawn;
         this->collideBox.setPos(pos);
-        engine.getAudioEngine().playSound(deathSoundName);
+        engine.getSFX().playSound(deathSoundName);
         life--;
     }
 }

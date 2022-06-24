@@ -61,9 +61,9 @@ void Game::resetGame()
     map.parseMap(mapPaths.at(0));
     srand(time(nullptr));
     clock.reset();
-    engine.getAudioEngine().pauseSound(currentSong);
+    engine.getSFX().pauseSound(currentSong);
     currentSong = gameSongs.at(rand() % gameSongs.size());
-    engine.getAudioEngine().playSound(gameMenuSound);
+    engine.getSFX().playSound(gameMenuSound);
     engine.setFramesCounter(0, 0);
     engine.setFramesCounter(0, 1);
     engine.setFramesCounter(0, 2);
@@ -214,9 +214,9 @@ void Game::displayScene()
         }
         engine.drawHUDStart();
     }
-    if (!AudioEngine::isSoundPlaying(
-            engine.getAudioEngine().getSound(soundName)))
-        engine.getAudioEngine().playSound(currentSong);
+    if (!SFX::isSoundPlaying(
+            engine.getSFX().getSound(soundName)))
+        engine.getSFX().playSound(currentSong);
     for (Player& player : this->players) {
         if (clocky.is_running() == Clock::PAUSE)
             drawGUI(static_cast<ACharacter&>(player), count, player.getSkin());

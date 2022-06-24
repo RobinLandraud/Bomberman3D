@@ -2,14 +2,14 @@
 ** EPITECH PROJECT, 2022
 ** B-YEP-400-BDX-4-1-indiestudio-valentin.eyraud
 ** File description:
-** AudioEngine
+** SFX
 */
 
-#include "AudioEngine.hpp"
+#include "SFX.hpp"
 
 #include <utility>
 
-AudioEngine::AudioEngine()
+SFX::SFX()
 {
     std::string name = "main_menu_bb";
     InitAudioDevice();
@@ -19,25 +19,25 @@ AudioEngine::AudioEngine()
     playSound(name);
 }
 
-AudioEngine::~AudioEngine() noexcept
+SFX::~SFX() noexcept
 {
     unloadAll();
     CloseAudioDevice();
 }
 
-void AudioEngine::addSound(std::string& path, std::string& name)
+void SFX::addSound(std::string& path, std::string& name)
 {
     Sound sound = LoadSound(std::string(std::move(path)).c_str());
     this->sounds.emplace(name, sound);
 }
 
-void AudioEngine::addMusic(std::string& path, std::string& name)
+void SFX::addMusic(std::string& path, std::string& name)
 {
     Music music = LoadMusicStream(path.c_str());
     this->musics.emplace(name, music);
 }
 
-void AudioEngine::playIndexSound(std::string& name, int size, float volume)
+void SFX::playIndexSound(std::string& name, int size, float volume)
 {
     std::vector<std::string> othersIndex = {};
     for (int i = 1; i < size; i++) {
@@ -57,7 +57,7 @@ void AudioEngine::playIndexSound(std::string& name, int size, float volume)
     }
 }
 
-void AudioEngine::playSound(std::string& name)
+void SFX::playSound(std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -78,7 +78,7 @@ void AudioEngine::playSound(std::string& name)
     }
 }
 
-void AudioEngine::pauseSound(std::string& name)
+void SFX::pauseSound(std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -92,12 +92,12 @@ void AudioEngine::pauseSound(std::string& name)
     }
 }
 
-void AudioEngine::changeMasterVolume(float volume)
+void SFX::changeMasterVolume(float volume)
 {
     SetMasterVolume(volume);
 }
 
-void AudioEngine::changeVolume(float volume, std::string& name)
+void SFX::changeVolume(float volume, std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -111,7 +111,7 @@ void AudioEngine::changeVolume(float volume, std::string& name)
     }
 }
 
-void AudioEngine::changePitch(float pitch, std::string& name)
+void SFX::changePitch(float pitch, std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -125,17 +125,17 @@ void AudioEngine::changePitch(float pitch, std::string& name)
     }
 }
 
-bool AudioEngine::isSoundPlaying(Sound sound)
+bool SFX::isSoundPlaying(Sound sound)
 {
     return (IsSoundPlaying(sound));
 }
 
-bool AudioEngine::isMusicPlaying(Music music)
+bool SFX::isMusicPlaying(Music music)
 {
     return (IsMusicStreamPlaying(music));
 }
 
-void AudioEngine::pause(std::string& name)
+void SFX::pause(std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -149,7 +149,7 @@ void AudioEngine::pause(std::string& name)
     }
 }
 
-void AudioEngine::play(std::string& name)
+void SFX::play(std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -163,7 +163,7 @@ void AudioEngine::play(std::string& name)
     }
 }
 
-void AudioEngine::unloadAll()
+void SFX::unloadAll()
 {
     for (auto& music : musics) {
         UnloadMusicStream(music.second);
@@ -175,7 +175,7 @@ void AudioEngine::unloadAll()
     }
 }
 
-void AudioEngine::unloadSound(std::string& name)
+void SFX::unloadSound(std::string& name)
 {
     auto its = this->sounds.find(name);
     if (its != this->sounds.end()) {
@@ -184,7 +184,7 @@ void AudioEngine::unloadSound(std::string& name)
     }
 }
 
-void AudioEngine::unloadMusic(std::string& name)
+void SFX::unloadMusic(std::string& name)
 {
     auto itm = this->musics.find(name);
     if (itm != this->musics.end()) {
@@ -193,7 +193,7 @@ void AudioEngine::unloadMusic(std::string& name)
     }
 }
 
-Sound AudioEngine::getSound(std::string& name)
+Sound SFX::getSound(std::string& name)
 {
     auto its = this->sounds.find(name);
     return (its->second);

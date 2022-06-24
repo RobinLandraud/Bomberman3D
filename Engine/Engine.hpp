@@ -16,7 +16,7 @@
 #include <utility>
 #include <vector>
 
-#include "AudioEngine.hpp"
+#include "SFX.hpp"
 #include "Button.hpp"
 #include "Event.hpp"
 #include "Model3D.hpp"
@@ -59,7 +59,7 @@ class Engine
     void updateCamera();
     void initCameraMode(CameraMode camMode);
     Camera getCamera();
-    AudioEngine& getAudioEngine();
+    SFX& getSFX();
     void initMode3D();
     static void endMode3D();
     void addModel(std::string& textureName,
@@ -97,7 +97,7 @@ class Engine
     int screenWidth;
     int screenHeight;
     Vector2 posCenter;
-    AudioEngine audioHandler;
+    SFX audioHandler;
     Event event;
     std::vector<std::string> assets = {
         "bgchar2",

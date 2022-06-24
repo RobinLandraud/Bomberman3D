@@ -124,7 +124,7 @@ void PlayerBox::updateBox(Event& event)
                 event.getMouseInfo().pos)) {
             buttons.at(i).setZoom(1.1);
             if (event.getMouseInfo().left) {
-                engine.getAudioEngine().playSound(clickSoundName);
+                engine.getSFX().playSound(clickSoundName);
                 if (type == PLAYER) {
                     if (i == 0)
                         setPosChoice(static_cast<int>(posChoice) - 1);

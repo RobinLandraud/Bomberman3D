@@ -133,7 +133,7 @@ indie::AScene2D::SceneEvent indie::ChooseCharScene::updateScene()
         && !getButtonsTab().at("time").is_activated()) {
         getButtonsTab().at("time").click();
         if (getButtonsTab().at("life").is_activated()) {
-            engine.getAudioEngine().playSound(clickSoundName);
+            engine.getSFX().playSound(clickSoundName);
             getButtonsTab().at("life").click();
         }
     }
@@ -143,7 +143,7 @@ indie::AScene2D::SceneEvent indie::ChooseCharScene::updateScene()
         && !getButtonsTab().at("life").is_activated()) {
         getButtonsTab().at("life").click();
         if (getButtonsTab().at("time").is_activated()) {
-            engine.getAudioEngine().playSound(clickSoundName);
+            engine.getSFX().playSound(clickSoundName);
             getButtonsTab().at("time").click();
         }
     }
@@ -151,14 +151,14 @@ indie::AScene2D::SceneEvent indie::ChooseCharScene::updateScene()
         && getHeaderButtonsTab().at("ok").getCollisionBox().isColide(
             event.getMouseInfo().pos)) {
         saveSettings();
-        engine.getAudioEngine().playSound(clickSoundName);
+        engine.getSFX().playSound(clickSoundName);
         return NEXT;
     }
     if (event.getMouseInfo().left
         && getHeaderButtonsTab().at("prev").getCollisionBox().isColide(
             event.getMouseInfo().pos)) {
         getSettings().clearAll();
-        engine.getAudioEngine().playSound(clickSoundName);
+        engine.getSFX().playSound(clickSoundName);
         return PREV;
     }
     return NONE;
@@ -190,19 +190,19 @@ indie::AScene2D::SceneEvent indie::MainMenu::updateScene()
             button.second.setZoom(1.05);
             if (getEngine().getEvent().getMouseInfo().left) {
                 if (button.first.compare("solo") == 0) {
-                    engine.getAudioEngine().playSound(clickSoundName);
+                    engine.getSFX().playSound(clickSoundName);
                     return indie::AScene2D::SceneEvent::OPT1;
                 }
                 if (button.first.compare("multi") == 0) {
-                    engine.getAudioEngine().playSound(clickSoundName);
+                    engine.getSFX().playSound(clickSoundName);
                     return indie::AScene2D::SceneEvent::OPT2;
                 }
                 if (button.first.compare("continue") == 0) {
-                    engine.getAudioEngine().playSound(clickSoundName);
+                    engine.getSFX().playSound(clickSoundName);
                     return indie::AScene2D::SceneEvent::OPT3;
                 }
                 if (button.first.compare("quit") == 0) {
-                    engine.getAudioEngine().playSound(clickSoundName);
+                    engine.getSFX().playSound(clickSoundName);
                     return indie::AScene2D::SceneEvent::CLOSE;
                 }
             }

@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** B-YEP-400-BDX-4-1-indiestudio-valentin.eyraud
 ** File description:
-** AudioEngine
+** SFX
 */
 
-#ifndef AUDIOENGINE_HPP_
-#define AUDIOENGINE_HPP_
+#ifndef SFX_HPP_
+#define SFX_HPP_
 
 #include <raylib.h>
 
@@ -16,15 +16,15 @@
 #include <string_view>
 #include <vector>
 
-class AudioEngine
+class SFX
 {
   public:
-    AudioEngine();
-    ~AudioEngine() noexcept;
-    AudioEngine(AudioEngine&& b) noexcept = default;
+    SFX();
+    ~SFX() noexcept;
+    SFX(SFX&& b) noexcept = default;
 
-    AudioEngine& operator=(AudioEngine const& rhs) noexcept = default;
-    AudioEngine& operator=(AudioEngine&& rhs) noexcept = default;
+    SFX& operator=(SFX const& rhs) noexcept = default;
+    SFX& operator=(SFX&& rhs) noexcept = default;
     void addSound(std::string& path, std::string& name);
     void addMusic(std::string& path, std::string& name);
     void playSound(std::string& name);
@@ -70,4 +70,4 @@ class AudioEngine
         {"assets/forest.ogg", "forest"}};
 };
 
-#endif /* !AUDIOENGINE_HPP_ */
+#endif /* !SFX_HPP_ */

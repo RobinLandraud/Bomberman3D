@@ -12,7 +12,7 @@
 #include <string>
 
 #include "AScene2D.hpp"
-#include "AudioEngine.hpp"
+#include "SFX.hpp"
 #include "Engine.hpp"
 #include "Game.hpp"
 #include "Settings.hpp"

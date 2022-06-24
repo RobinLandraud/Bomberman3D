@@ -70,7 +70,7 @@ void Bot::respawn(bool isDead, Engine& engine)
         this->setIsInvisible(true);
         this->pos = this->spawn;
         this->collideBox.setPos(pos);
-        engine.getAudioEngine().playSound(deathSoundName);
+        engine.getSFX().playSound(deathSoundName);
         life--;
     }
 }
@@ -233,7 +233,7 @@ bool Bot::poseBomb(
     if (!possibleNextDirs.empty()) {
         if (dropBomb() != 0)
             return false;
-        engine.getAudioEngine().playSound(explosionSoundName);
+        engine.getSFX().playSound(explosionSoundName);
         this->nextDirs = possibleNextDirs;
         return true;
     }

@@ -4,7 +4,7 @@ FIND_PACKAGE(raylib 4.0.0 REQUIRED)
 add_library(
     Engine
     Engine.cpp
-    AudioEngine.cpp
+    SFX.cpp
     Model3D.cpp
     Button.cpp
     Event.cpp

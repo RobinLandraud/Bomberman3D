@@ -49,8 +49,8 @@ void indie::Core::drawSolo()
         game.getClocky().reset();
         setCurrentScene(GAME);
         game.launchGame();
-        game.getEngine().getAudioEngine().pauseSound(menuSoundName);
-        game.getEngine().getAudioEngine().playSound(
+        game.getEngine().getSFX().pauseSound(menuSoundName);
+        game.getEngine().getSFX().playSound(
             game.getCurrentSongString());
     }
     charSceneSolo.displayScene();
@@ -66,8 +66,8 @@ void indie::Core::drawMulti()
         game.getClocky().reset();
         setCurrentScene(GAME);
         game.launchGame();
-        game.getEngine().getAudioEngine().pauseSound(menuSoundName);
-        game.getEngine().getAudioEngine().playSound(
+        game.getEngine().getSFX().pauseSound(menuSoundName);
+        game.getEngine().getSFX().playSound(
             game.getCurrentSongString());
     }
     charSceneMulti.displayScene();

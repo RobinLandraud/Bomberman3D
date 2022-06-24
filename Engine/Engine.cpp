@@ -218,7 +218,7 @@ Camera Engine::getCamera()
     return (this->camera);
 }
 
-AudioEngine& Engine::getAudioEngine()
+SFX& Engine::getSFX()
 {
     return (this->audioHandler);
 }

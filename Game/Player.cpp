@@ -64,7 +64,7 @@ std::pair<float, float> Player::getNextPos()
             direction = RIGHT;
         } else if (key == this->binding.at(BOMB)) {
             if (dropBomb() == 0)
-                engine.getAudioEngine().playSound(explosionSoundName);
+                engine.getSFX().playSound(explosionSoundName);
         }
     }
     if (direction == NONE) {
