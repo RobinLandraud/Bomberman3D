@@ -18,10 +18,10 @@ PlayerBox::PlayerBox(
     , engine(engine)
 {
     std::vector<std::string> textureNames = {"prev", "next"};
-    buttons.emplace_back(Button(engine.getTexture(textureNames.at(0)),
+    buttons.emplace_back(Button(engine.getMaterial().getTexture(textureNames.at(0)),
         {pos.first + (50 * scale), pos.second + (1000 * scale)},
         0.3));
-    buttons.emplace_back(Button(engine.getTexture(textureNames.at(1)),
+    buttons.emplace_back(Button(engine.getMaterial().getTexture(textureNames.at(1)),
         {pos.first + (680 * scale), pos.second + (1000 * scale)},
         0.3));
 }
@@ -75,16 +75,16 @@ void PlayerBox::display()
 {
     std::vector<std::string> textureNames = {
         "bgchar2", "table", "iconPlayerGrey"};
-    engine.drawTexture(
+    engine.getMaterial().drawTexture(
         textureNames.at(0), {pos.first, pos.second}, 0, scale, WHITE);
-    engine.drawTexture(textureNames.at(1),
+    engine.getMaterial().drawTexture(textureNames.at(1),
         {pos.first + (scale * 50), pos.second},
         0,
         float(scale * 0.76),
         WHITE);
     Engine::drawButtons(this->buttons);
     if (type == BOT) {
-        engine.drawTexture(textureNames.at(2),
+        engine.getMaterial().drawTexture(textureNames.at(2),
             {pos.first + (967 * scale / 2) - (90),
                 pos.second + ((1295 * scale / 2) * 4 / 5) - (90)},
             0,
@@ -97,14 +97,14 @@ void PlayerBox::display()
         return;
     }
     if (posChoice < choices.size())
-        engine.drawTexture(choices.at(posChoice).first,
+        engine.getMaterial().drawTexture(choices.at(posChoice).first,
             {pos.first + (967 * scale / 2)
                     - (static_cast<float>(
-                           engine.getTexture(choices.at(posChoice).first).width)
+                           engine.getMaterial().getTexture(choices.at(posChoice).first).width)
                         / 2 * choices.at(posChoice).second),
                 pos.second + ((1295 * scale / 2) * 4 / 5)
                     - (static_cast<float>(
-                           engine.getTexture(choices.at(posChoice).first)
+                           engine.getMaterial().getTexture(choices.at(posChoice).first)
                                .height)
                         / 2 * choices.at(posChoice).second)},
             0,

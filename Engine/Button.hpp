@@ -46,8 +46,8 @@ class Button
     Button(Texture2D& texture, std::pair<float, float> pos, float scale);
     Button(Texture2D& texture, std::pair<float, float> pos, Color colorName);
     Button(Texture2D& texture, std::pair<float, float> pos);
-    [[nodiscard]] Texture& getTexture() const;
-    [[nodiscard]] Texture& getTextureOff() const;
+    [[nodiscard]] Texture2D& getTexture() const;
+    [[nodiscard]] Texture2D& getTextureOff() const;
     void setTexture(Texture& texture, float scale);
     [[nodiscard]] float getScale() const;
     [[nodiscard]] float getScaleOff() const;

@@ -136,45 +136,45 @@ void Game::printLifes(
         "table", "heart", "bombIcon", "explosion"};
     switch (color) {
         case Settings::Skin::S_BLUE:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, BLUE);
             break;
         case Settings::Skin::S_RED:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, RED);
             break;
         case Settings::Skin::S_GREEN:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, GREEN);
             break;
         case Settings::Skin::S_PURPLE:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, PURPLE);
             break;
         case Settings::Skin::S_YELLOW:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, YELLOW);
             break;
         case Settings::Skin::S_GREY:
-            engine.drawTexture(
+            engine.getMaterial().drawTexture(
                 textureNames.at(0), {pos.first, pos.second}, 0, 0.25, GRAY);
         default: break;
     }
     y += 30;
     for (int i = 0; i < character.getLife(); i++) {
-        engine.drawTexture(textureNames.at(1), {x + 20, y}, 0, 0.2, GRAY);
+        engine.getMaterial().drawTexture(textureNames.at(1), {x + 20, y}, 0, 0.2, GRAY);
         x += 50;
     }
     x = pos.first;
     y += 40;
     for (int i = 0; i < character.getNbBomb(); i++) {
-        engine.drawTexture(textureNames.at(2), {x + 20, y}, 0, 0.5, WHITE);
+        engine.getMaterial().drawTexture(textureNames.at(2), {x + 20, y}, 0, 0.5, WHITE);
         x += 50;
     }
     x = pos.first;
     y += 60;
     for (int i = 0; i < character.getBombStrength(); i++) {
-        engine.drawTexture(textureNames.at(3), {x + 20, y}, 0, 0.5, WHITE);
+        engine.getMaterial().drawTexture(textureNames.at(3), {x + 20, y}, 0, 0.5, WHITE);
         x += 50;
         if (x >= (pos.first + 150.0f)) {
             x = pos.first;

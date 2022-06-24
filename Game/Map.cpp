@@ -177,7 +177,7 @@ void Map::drawBlocks()
         "basic_floor", "zyzz_texture", "box_texture", "explosion"};
     for (auto& blocks_line : blocks) {
         for (auto& block : blocks_line) {
-            Engine::drawBlock(getEngine().getTexture(textureNames.at(0)),
+            Engine::drawBlock(getEngine().getMaterial().getTexture(textureNames.at(0)),
                 {roundf(block.getPos().first),
                     0.0f,
                     roundf(block.getPos().second)},
@@ -188,7 +188,7 @@ void Map::drawBlocks()
             switch (block.getType()) {
                 case OBSTACLE:
                     Engine::drawBlock(
-                        getEngine().getTexture(textureNames.at(1)),
+                        getEngine().getMaterial().getTexture(textureNames.at(1)),
                         {block.getPos().first, 1.0f, block.getPos().second},
                         sizeBlock,
                         sizeBlock,
@@ -197,7 +197,7 @@ void Map::drawBlocks()
                     break;
                 case BOX:
                     Engine::drawBlock(
-                        getEngine().getTexture(textureNames.at(2)),
+                        getEngine().getMaterial().getTexture(textureNames.at(2)),
                         {block.getPos().first, 1.0f, block.getPos().second},
                         sizeBlock,
                         sizeBlock,
@@ -211,7 +211,7 @@ void Map::drawBlocks()
     for (auto& blocks_line : blocks) {
         for (auto& block : blocks_line) {
             if (block.getType() == EXPLODE) {
-                Engine::drawBlock(getEngine().getTexture(textureNames.at(3)),
+                Engine::drawBlock(getEngine().getMaterial().getTexture(textureNames.at(3)),
                     {block.getPos().first, 1.0f, block.getPos().second},
                     sizeBlock,
                     sizeBlock,

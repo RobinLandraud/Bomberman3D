@@ -14,7 +14,6 @@ Engine::Engine(int width, int height) noexcept
     , screenHeight(height)
     , path("assets/")
     , font(LoadFont("assets/setback.png"))
-    , imageTemp(LoadImage("assets/setback.png"))
     , camera({0})
     , posCenter({0, 0})
 {
@@ -32,7 +31,7 @@ Engine::Engine(int width, int height) noexcept
             std::cout << "file not found " + path + asset + ".png\n\n";
             continue;
         }
-        addTextureToTab(path + asset + ".png", asset);
+        material.addTextureToTab(path + asset + ".png", asset);
     }
 }
 
@@ -68,39 +67,39 @@ bool Engine::windowShouldClose()
 
 Engine::~Engine() noexcept
 {
-    unloadTextures();
+    material.unloadTextures();
 }
 
-int Engine::addTextureToTab(std::string path, std::string& name)
-{
-    int texture_pos = 0;
-    Texture2D texture;
-    if (path.empty() || checkFile(path) == -1)
-        return (-1);
-    imageTemp = LoadImage(path.c_str());
-    texture = LoadTextureFromImage(imageTemp);
-    UnloadImage(imageTemp);
-    textures.insert(std::pair<std::string, Texture2D>(name, texture));
-    return (0);
-}
+//int Engine::addTextureToTab(std::string path, std::string& name)
+//{
+//    int texture_pos = 0;
+//    Texture2D texture;
+//    if (path.empty() || checkFile(path) == -1)
+//        return (-1);
+//    imageTemp = LoadImage(path.c_str());
+//    texture = LoadTextureFromImage(imageTemp);
+//    UnloadImage(imageTemp);
+//    textures.insert(std::pair<std::string, Texture2D>(name, texture));
+//    return (0);
+//}
 
-int Engine::checkFile(std::string& name)
-{
-    int pos = 0;
-    if (!std::filesystem::exists(name)) {
-        return -1;
-    }
-    pos = static_cast<int>(name.find_last_of('.'));
-    if (name.substr(pos + 1).compare("png") == 0
-        || name.substr(pos + 1).compare("jpg") == 0)
-        return 0;
-    return -1;
-}
+//int Engine::checkFile(std::string& name)
+//{
+//    int pos = 0;
+//    if (!std::filesystem::exists(name)) {
+//        return -1;
+//    }
+//    pos = static_cast<int>(name.find_last_of('.'));
+//    if (name.substr(pos + 1).compare("png") == 0
+//        || name.substr(pos + 1).compare("jpg") == 0)
+//        return 0;
+//    return -1;
+//}
 
-std::map<std::string, Texture2D>& Engine::getTextures()
-{
-    return (this->textures);
-}
+//std::map<std::string, Texture2D>& Engine::getTextures()
+//{
+//    return (this->textures);
+//}
 
 Model3D& Engine::getModel3D(int pos)
 {
@@ -112,16 +111,16 @@ int Engine::getNbModels() const
     return static_cast<int>(models.size());
 }
 
-void Engine::drawTexture(std::string& name,
-    Vector2 pos,
-    float rotation,
-    float scale,
-    Color colorName)
-{
-    std::map<std::string, Texture2D>::iterator it;
-    it = textures.find(name);
-    DrawTextureEx(it->second, pos, rotation, scale, colorName);
-}
+//void Engine::drawTexture(std::string& name,
+//    Vector2 pos,
+//    float rotation,
+//    float scale,
+//    Color colorName)
+//{
+//    std::map<std::string, Texture2D>::iterator it;
+//    it = textures.find(name);
+//    DrawTextureEx(it->second, pos, rotation, scale, colorName);
+//}
 
 void Engine::drawButtons(std::map<std::string, Button>& buttons)
 {
@@ -165,13 +164,13 @@ void Engine::drawText(
     DrawText(msg.c_str(), pos.first, pos.second, fontSize, colorName);
 }
 
-void Engine::unloadTextures()
-{
-    std::map<std::string, Texture2D>::iterator it;
-    for (it = textures.begin(); it != textures.end(); it++) {
-        UnloadTexture(it->second);
-    }
-}
+//void Engine::unloadTextures()
+//{
+//    std::map<std::string, Texture2D>::iterator it;
+//    for (it = textures.begin(); it != textures.end(); it++) {
+//        UnloadTexture(it->second);
+//    }
+//}
 
 std::vector<std::string> Engine::getAssetsTab()
 {
@@ -186,11 +185,6 @@ int Engine::getScreenWidth() const
 int Engine::getScreenHeight() const
 {
     return screenHeight;
-}
-
-Texture2D& Engine::getTexture(std::string& name)
-{
-    return textures.find(name)->second;
 }
 
 Event& Engine::getEvent()
@@ -220,7 +214,12 @@ Camera Engine::getCamera()
 
 SFX& Engine::getSFX()
 {
-    return (this->audioHandler);
+    return (this->SoundFX);
+}
+
+TextMaterial &Engine::getMaterial()
+{
+    return (this->material);
 }
 
 void Engine::setCameraValue(
@@ -258,7 +257,7 @@ void Engine::addModel(std::string& textureName,
     std::vector<std::string>& anims,
     float size)
 {
-    this->models.emplace_back(getTexture(textureName), model, anims, size);
+    this->models.emplace_back(material.getTexture(textureName), model, anims, size);
 }
 
 void Engine::drawModel(Model3D& model,
@@ -283,7 +282,7 @@ void Engine::drawHUDStart()
 {
     std::string textureName = "instructions";
     if (getFramesCounter(1) < 1000) {
-        drawTexture(textureName, {1300, 50}, 0, 0.5, WHITE);
+        material.drawTexture(textureName, {1300, 50}, 0, 0.5, WHITE);
         DrawTextEx(font,
             "Epitech BORDEAUX, 2022",
             {10, 1000},

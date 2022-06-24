@@ -16,9 +16,9 @@ indie::AScene2D::AScene2D(Engine& engine, Settings& settings)
     : Ascene(engine, settings)
 {
     this->headerButtons.insert({std::string("prev"),
-        Button(engine.getTextures().at(std::string("prev")), {150, 35}, 0.6)});
+        Button(engine.getMaterial().getTextures().at(std::string("prev")), {150, 35}, 0.6)});
     this->headerButtons.insert({std::string("ok"),
-        Button(engine.getTextures().at(std::string("ok")), {1650, 35}, 0.6)});
+        Button(engine.getMaterial().getTextures().at(std::string("ok")), {1650, 35}, 0.6)});
 }
 
 std::map<std::string, Button>& indie::AScene2D::getButtonsTab()
@@ -34,8 +34,8 @@ std::map<std::string, Button>& indie::AScene2D::getHeaderButtonsTab()
 void indie::AScene2D::displayHeader()
 {
     std::vector<std::string> textureNames = {"header", "bm-icon"};
-    getEngine().drawTexture(textureNames.at(0), {0, 0}, 0, 1.25, WHITE);
-    getEngine().drawTexture(textureNames.at(1), {850, 20}, 0, 0.4, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(0), {0, 0}, 0, 1.25, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(1), {850, 20}, 0, 0.4, WHITE);
     Engine::drawButtons(this->headerButtons);
 }
 
@@ -53,14 +53,14 @@ indie::ChooseCharScene::ChooseCharScene(
     if (mode == MULTI)
         type = PlayerBox::TypeBox::PLAYER;
     getButtonsTab().insert({textureNames.at(0),
-        Button({engine.getTexture(textureNames.at(1)), 1},
-            {engine.getTexture(textureNames.at(2)), 1},
+        Button({engine.getMaterial().getTexture(textureNames.at(1)), 1},
+            {engine.getMaterial().getTexture(textureNames.at(2)), 1},
             {700, 900},
             WHITE,
             false)});
     getButtonsTab().insert({std::string("time"),
-        Button({engine.getTexture(textureNames.at(1)), 1},
-            {engine.getTexture(textureNames.at(2)), 1},
+        Button({engine.getMaterial().getTexture(textureNames.at(1)), 1},
+            {engine.getMaterial().getTexture(textureNames.at(2)), 1},
             {1100, 900},
             WHITE,
             true)});
@@ -93,11 +93,11 @@ void indie::ChooseCharScene::displayBoxes()
 void indie::ChooseCharScene::displayScene()
 {
     std::vector<std::string> textureNames = {"sky-bg", "heart", "clock"};
-    getEngine().drawTexture(textureNames.at(0), {0, 0}, 0, 1, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(0), {0, 0}, 0, 1, WHITE);
     displayHeader();
     displayBoxes();
-    getEngine().drawTexture(textureNames.at(1), {800, 900}, 0, 0.5, WHITE);
-    getEngine().drawTexture(textureNames.at(2), {1000, 900}, 0, 0.9, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(1), {800, 900}, 0, 0.5, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(2), {1000, 900}, 0, 0.9, WHITE);
     Engine::drawButtons(getButtonsTab());
 }
 
@@ -169,16 +169,16 @@ indie::MainMenu::MainMenu(Engine& engine, Settings& settings)
 {
     this->getButtonsTab().insert({std::string("solo"),
         Button(
-            engine.getTextures().at(std::string("button1")), {400, 500}, 2)});
+            engine.getMaterial().getTextures().at(std::string("button1")), {400, 500}, 2)});
     this->getButtonsTab().insert({std::string("multi"),
         Button(
-            engine.getTextures().at(std::string("button1")), {400, 700}, 2)});
+            engine.getMaterial().getTextures().at(std::string("button1")), {400, 700}, 2)});
     this->getButtonsTab().insert({std::string("continue"),
         Button(
-            engine.getTextures().at(std::string("button1")), {1100, 500}, 2)});
+            engine.getMaterial().getTextures().at(std::string("button1")), {1100, 500}, 2)});
     this->getButtonsTab().insert({std::string("quit"),
         Button(
-            engine.getTextures().at(std::string("button1")), {1100, 700}, 2)});
+            engine.getMaterial().getTextures().at(std::string("button1")), {1100, 700}, 2)});
 }
 
 indie::AScene2D::SceneEvent indie::MainMenu::updateScene()
@@ -216,9 +216,9 @@ indie::AScene2D::SceneEvent indie::MainMenu::updateScene()
 void indie::MainMenu::displayScene()
 {
     std::vector<std::string> textureNames = {"sky-bg", "header", "bm-icon"};
-    getEngine().drawTexture(textureNames.at(0), {0, 0}, 0, 1, WHITE);
-    getEngine().drawTexture(textureNames.at(1), {0, 0}, 0, 1.25, WHITE);
-    getEngine().drawTexture(textureNames.at(2), {800, 20}, 0, 0.6, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(0), {0, 0}, 0, 1, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(1), {0, 0}, 0, 1.25, WHITE);
+    getEngine().getMaterial().drawTexture(textureNames.at(2), {800, 20}, 0, 0.6, WHITE);
     Engine::drawButtons(getButtonsTab());
     Engine::drawText(buttonName.at(0), WHITE, {450, 550}, 40);
     Engine::drawText(buttonName.at(1), WHITE, {450, 750}, 40);
@@ -247,7 +247,7 @@ indie::AScene2D::SceneEvent indie::EndScene::updateScene()
 void indie::EndScene::displayScene()
 {
     std::string textureName = "sky-bg";
-    getEngine().drawTexture(textureName, {0, 0}, 0, 1, WHITE);
+    getEngine().getMaterial().drawTexture(textureName, {0, 0}, 0, 1, WHITE);
     displayHeader();
     switch (color) {
         case Settings::Skin::S_RED:

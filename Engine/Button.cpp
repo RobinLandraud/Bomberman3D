@@ -72,12 +72,12 @@ void Button::setPos(Vector2& pos)
     this->pos.y = pos.y;
 }
 
-Texture& Button::getTexture() const
+Texture2D& Button::getTexture() const
 {
     return this->texture;
 }
 
-Texture& Button::getTextureOff() const
+Texture2D& Button::getTextureOff() const
 {
     return this->off;
 }

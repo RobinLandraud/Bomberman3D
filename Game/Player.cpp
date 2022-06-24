@@ -25,7 +25,7 @@ Player::Player(Map& map,
     , animIqm(animIqm)
     , binding(std::move(binding))
     , engine(engine)
-    , model(Model3D(engine.getTexture(skinAsset), playerIqm, animIqm, 0.01f))
+    , model(Model3D(engine.getMaterial().getTexture(skinAsset), playerIqm, animIqm, 0.01f))
 {
 }
 

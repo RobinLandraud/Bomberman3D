@@ -8,6 +8,7 @@ add_library(
     Model3D.cpp
     Button.cpp
     Event.cpp
+    Material.cpp
 )
 
 TARGET_LINK_LIBRARIES(Engine raylib)

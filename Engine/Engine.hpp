@@ -17,6 +17,7 @@
 #include <vector>
 
 #include "SFX.hpp"
+#include "Material.hpp"
 #include "Button.hpp"
 #include "Event.hpp"
 #include "Model3D.hpp"
@@ -29,22 +30,23 @@ class Engine
     Engine(Engine&& b) noexcept = default;
     ~Engine() noexcept;
 
-    int addTextureToTab(std::string path, std::string& name);
-    std::map<std::string, Texture2D>& getTextures();
-    void drawTexture(std::string& name,
-        Vector2 pos,
-        float rotation,
-        float scale,
-        Color colorName);
+    //int addTextureToTab(std::string path, std::string& name);
+    //std::map<std::string, Texture2D>& getTextures();
+    //void drawTexture(std::string& name,
+    //    Vector2 pos,
+    //    float rotation,
+    //    float scale,
+    //    Color colorName);
+    //void unloadTextures();
+    //Texture2D& getTexture(std::string& name);
+
     static void drawButtons(std::map<std::string, Button>& buttons);
     static void drawButtons(std::vector<Button>& buttons);
     static void drawText(std::string& msg,
         Color colorName,
         std::pair<int, int> pos,
         int fontSize);
-    void unloadTextures();
     std::vector<std::string> getAssetsTab();
-    Texture2D& getTexture(std::string& name);
     Event& getEvent();
     [[nodiscard]] int getScreenWidth() const;
     [[nodiscard]] int getScreenHeight() const;
@@ -60,6 +62,7 @@ class Engine
     void initCameraMode(CameraMode camMode);
     Camera getCamera();
     SFX& getSFX();
+    TextMaterial &getMaterial();
     void initMode3D();
     static void endMode3D();
     void addModel(std::string& textureName,
@@ -92,12 +95,13 @@ class Engine
 
   protected:
     Camera camera;
-    std::map<std::string, Texture2D> textures;
-    Image imageTemp;
+    //std::map<std::string, Texture2D> textures;
+    //Image imageTemp;
     int screenWidth;
     int screenHeight;
     Vector2 posCenter;
-    SFX audioHandler;
+    SFX SoundFX;
+    TextMaterial material;
     Event event;
     std::vector<std::string> assets = {
         "bgchar2",
@@ -152,5 +156,5 @@ class Engine
     Font font;
 
   private:
-    static int checkFile(std::string& name);
+    //static int checkFile(std::string& name);
 };

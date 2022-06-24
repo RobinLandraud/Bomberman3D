@@ -16,7 +16,7 @@ Bonuses::Bonuses(std::pair<float, float> pos)
 
 void Bonuses::display(Engine& engine)
 {
-    Engine::drawBlock(engine.getTexture(textures.at(type)),
+    Engine::drawBlock(engine.getMaterial().getTexture(textures.at(type)),
         {pos.first, 1.0f, pos.second},
         collideBox.w,
         1,
